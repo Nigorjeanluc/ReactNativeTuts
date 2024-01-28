@@ -3,7 +3,7 @@
     "name": "tutoriallsCodevolution",
     "slug": "tutoriallsCodevolution",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "default",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
@@ -21,10 +21,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.nigorjeanluc.tutoriallsCodevolution"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "4953afaf-777c-41aa-9e83-8d5bb4761285"
+      }
     }
   }
 }
