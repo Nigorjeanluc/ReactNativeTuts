@@ -1,3 +1,5 @@
+import 'react-native-gesture-handler'
+
 import { useState, useEffect } from 'react'
 import {
   View,
@@ -28,6 +30,7 @@ import CustomButton from './components/CustomButton/CustomButton'
 
 import pokemonList from './data.json'
 import groupedPokemonList from './grouped-data.json'
+import { NavigationContainer } from '@react-navigation/native'
 
 const logoImg = require("./assets/adaptive-icon.png") 
 const logoImg2 = require("./assets/favicon.png")
@@ -997,109 +1000,216 @@ const logoImg2 = require("./assets/favicon.png")
 
 /*********** Login Form && Validation && Submission *******************/
 
+// export default function App() {
+//   const [username, setUsername] = useState("")
+//   const [password, setPassword] = useState("")
+//   const [errors, setErrors] = useState({})
+
+//   const validateForm = () => {
+//     let errors = {}
+
+//     if(!username) errors.username = "Username is required"
+//     if(!password) errors.password = "Password is required"
+
+//     setErrors(errors)
+//     return Object.keys(errors).length === 0
+//   }
+
+//   const handleSubmit = () => {
+//     if(validateForm()) {
+//       console.log(`Username: ${username}`, `Password: ${password}`)
+//       setUsername("")
+//       setPassword("")
+//       setErrors({})
+//     }
+//   }
+
+//   return (
+//     <KeyboardAvoidingView
+//       behavior='padding'
+//       keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}
+//       style={styles.container}
+//     >
+//       <View style={styles.form}>
+//         <Image
+//           source={require('./assets/adaptive-icon.png')}
+//           style={styles.image}
+//         />
+//         <Text style={styles.label}>Username</Text>
+//         <TextInput
+//           style={styles.input}
+//           placeholder="Enter your username"
+//           value={username}
+//           onChangeText={setUsername}
+//         />
+//         {
+//           errors.username ? <Text style={styles.errorText}>{errors.username}</Text> : null
+//         }
+//         <Text style={styles.label}>Password</Text>
+//         <TextInput
+//           style={styles.input}
+//           placeholder="Enter your password"
+//           value={password}
+//           onChangeText={setPassword}
+//           secureTextEntry
+//         />
+//         {
+//           errors.password ? <Text style={styles.errorText}>{errors.password}</Text> : null
+//         }
+//         <Button title="Login" onPress={handleSubmit} />
+//       </View>
+//     </KeyboardAvoidingView>
+//   )
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: "center",
+//     paddingHorizontal: 20,
+//     backgroundColor: "#f5f5f5"
+//   },
+//   form: {
+//     backgroundColor: "white",
+//     padding: 20,
+//     borderRadius: 10,
+//     shadowColor: "black",
+//     shadowOffset: {
+//       width: 0,
+//       height: 2
+//     },
+//     shadowOpacity: 0.25,
+//     shadowRadius: 4,
+//     elevation: 5,
+//   },
+//   label: {
+//     fontSize: 16,
+//     marginBottom: 5,
+//     fontWeight: "bold",
+//   },
+//   input: {
+//     height: 40,
+//     borderColor: "#ddd",
+//     borderWidth: 1,
+//     marginBottom: 15,
+//     padding: 10,
+//     borderRadius: 5,
+//   },
+//   image: {
+//     width: 200,
+//     height: 400,
+//     alignSelf: "center",
+//     marginBottom: 50
+//   },
+//   errorText: {
+//     color: "red",
+//     marginBottom: 10
+//   }
+// })
+
+/*********** Navigation ***********/
+
+// *********** Stack Navigator ***********//
+
+// import { createNativeStackNavigator } from "@react-navigation/native-stack"
+// import HomeScreen from './screens/Stack/HomeScreen'
+// import AboutScreen from './screens/Stack/AboutScreen'
+// import LoginScreen from './screens/Stack/LoginScreen'
+// import SignupScreen from './screens/Stack/SignupScreen'
+// import LoginButton from './components/Auth/LoginButton'
+// import SignupButton from './components/Auth/SignupButton'
+// const Stack = createNativeStackNavigator()
+
+
+// export default function App() {
+//   return (
+//     <NavigationContainer>
+//       <Stack.Navigator
+//         initialRouteName="Home"
+//         screenOptions={{
+//           headerStyle: {
+//             backgroundColor: "#000"
+//           },
+//           headerTintColor: "#fff",
+//           headerTitleStyle: {
+//             fontWeight: "bold",
+//           },
+//           headerRight: () => <SignupButton />
+//         }}
+//       >
+//         <Stack.Screen name="Home" component={HomeScreen} />
+//         <Stack.Screen
+//           name="About"
+//           component={AboutScreen}
+//           // Initial route parameters
+//           initialParams={{
+//             name: "Guest"
+//           }}
+//           // options={({ route }) => ({
+//           //   title: route.params.name,
+//           // })}
+//         />
+//         <Stack.Screen
+//           name="Login"
+//           component={LoginScreen}
+//           options={{
+//             title: "Login",
+//           }}
+//         />
+//         <Stack.Screen
+//           name="Signup"
+//           component={SignupScreen}
+//           options={{
+//             title: "Sign up",
+//             headerStyle: {
+//               backgroundColor: "#000"
+//             },
+//             headerTintColor: "#fff",
+//             headerTitleStyle: {
+//               fontWeight: "bold",
+//             },
+//             headerRight: () => <LoginButton />
+//           }}
+//         />
+//       </Stack.Navigator>
+//       {/* Rest of your app code */}
+//     </NavigationContainer>
+//   )
+// }
+
+// *********** Drawer Navigator ***********//
+
+// import { NavigationContainer } from '@react-navigation/native'
+import { createDrawerNavigator } from '@react-navigation/drawer'
+import DashboardScreen from './screens/Drawer/DashboardScreen'
+import SettingsScreen from './screens/Drawer/SettingsScreen'
+
+const Drawer = createDrawerNavigator()
+
 export default function App() {
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
-  const [errors, setErrors] = useState({})
-
-  const validateForm = () => {
-    let errors = {}
-
-    if(!username) errors.username = "Username is required"
-    if(!password) errors.password = "Password is required"
-
-    setErrors(errors)
-    return Object.keys(errors).length === 0
-  }
-
-  const handleSubmit = () => {
-    if(validateForm()) {
-      console.log(`Username: ${username}`, `Password: ${password}`)
-      setUsername("")
-      setPassword("")
-      setErrors({})
-    }
-  }
-
   return (
-    <KeyboardAvoidingView
-      behavior='padding'
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}
-      style={styles.container}
-    >
-      <View style={styles.form}>
-        <Image
-          source={require('./assets/adaptive-icon.png')}
-          style={styles.image}
+    <NavigationContainer>
+      <Drawer.Navigator>
+        <Drawer.Screen
+          name="Dashboard"
+          component={DashboardScreen}
+          options={{
+            title: "My Dashboard", // Header title and Drawer label
+            // If you want a different Drawer label
+            drawerLabel: "Dashboard label",
+            drawerActiveTintColor: "#333",
+            drawerActiveBackgroundColor: "lightblue",
+            drawerContentStyle: {
+              backgroundColor: "#c6cbef",
+            } 
+          }}
         />
-        <Text style={styles.label}>Username</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter your username"
-          value={username}
-          onChangeText={setUsername}
+        <Drawer.Screen
+          name="Settings"
+          component={SettingsScreen}
         />
-        {
-          errors.username ? <Text style={styles.errorText}>{errors.username}</Text> : null
-        }
-        <Text style={styles.label}>Password</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter your password"
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-        />
-        {
-          errors.password ? <Text style={styles.errorText}>{errors.password}</Text> : null
-        }
-        <Button title="Login" onPress={handleSubmit} />
-      </View>
-    </KeyboardAvoidingView>
+
+      </Drawer.Navigator>
+    </NavigationContainer>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    paddingHorizontal: 20,
-    backgroundColor: "#f5f5f5"
-  },
-  form: {
-    backgroundColor: "white",
-    padding: 20,
-    borderRadius: 10,
-    shadowColor: "black",
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  label: {
-    fontSize: 16,
-    marginBottom: 5,
-    fontWeight: "bold",
-  },
-  input: {
-    height: 40,
-    borderColor: "#ddd",
-    borderWidth: 1,
-    marginBottom: 15,
-    padding: 10,
-    borderRadius: 5,
-  },
-  image: {
-    width: 200,
-    height: 400,
-    alignSelf: "center",
-    marginBottom: 50
-  },
-  errorText: {
-    color: "red",
-    marginBottom: 10
-  }
-})
