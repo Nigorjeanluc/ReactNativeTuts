@@ -31,8 +31,8 @@ import { useNavigation } from "@react-navigation/native"
 // import groupedPokemonList from './grouped-data.json'
 // import { NavigationContainer } from '@react-navigation/native'
 
-const logoImg = require("../assets/adaptive-icon1.png") 
-const logoImg2 = require("../assets/favicon.png")
+const logoImg = require("../../assets/adaptive-icon1.png") 
+const logoImg2 = require("../../assets/favicon.png")
 
 
 // const App = () => {
@@ -113,7 +113,7 @@ export default function SignupScreen({ navigation, route }) {
       <View style={styles.form}>
         {/* <Text style={styles.logoTitle}>eKimina</Text> */}
         <Image
-          source={require('../assets/adaptive-icon1.png')}
+          source={require('../../assets/adaptive-icon1.png')}
           style={styles.image}
         />
         <Text style={styles.label}>Name</Text>

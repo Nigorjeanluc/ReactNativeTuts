@@ -1214,13 +1214,14 @@ const logoImg2 = require("./assets/favicon.png")
 //   )
 // }
 
-// *********** Bottom Tabs Navigator ***********//
+// *********** Bottom Tabs Navigator && Nested Navigator ***********//
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import DashboardScreen from './screens/Drawer/DashboardScreen'
 import SettingsScreen from './screens/Drawer/SettingsScreen'
 import CourseListScreen from './screens/Tabs/CourseListScreen'
 import ProfileScreen from './screens/Tabs/ProfileScreen'
 import Ionicons from '@expo/vector-icons/Ionicons'
+import { AboutStack } from './nested_navigators/AppStack'
 
 const Tab = createBottomTabNavigator()
 
@@ -1254,7 +1255,13 @@ export default function App() {
             name="Settings"
             component={SettingsScreen}
           />
-  
+          <Tab.Screen
+            name='About Stack'
+            component={AboutStack}
+            options={{
+              headerShown: false, // to hide the head of tabs
+            }}
+          />
         </Tab.Navigator>
       </NavigationContainer>
     )
